@@ -34,6 +34,11 @@ public class Main {
                 }
             }
         }
+        boolean isSetLast = false;         //переменная для знания, было ли изменено последнее число на 1(если последнее число не 1, не получится)
+        if(list.getLast() != 1) {
+            list.set(list.size() - 1, 1);
+            isSetLast = true;
+        }
         int sameIndexAndNumCount = 0;           //счётчик числе равным индексу
         int sameIndexAndNum = 0;                //сохранение индекса, с которым совпадает его число(понадобится в конце)
         for(int i = 0; i < list.size(); i++) {
@@ -45,11 +50,6 @@ public class Main {
                     return;
                 }
             }
-        }
-        boolean isSetLast = false;         //переменная для знания, было ли изменено последнее число на 1(если последнее число не 1, не получится)
-        if(list.getLast() != 1) {
-            list.set(list.size() - 1, 1);
-            isSetLast = true;
         }
         TreeSet<Integer> sameNumber = new TreeSet<>();         //дерево для хранения уникальных повторяющихся чисел в последовательности
         for(int i = 0; i < list.size(); i++) {
@@ -102,6 +102,7 @@ public class Main {
         HashSet<Integer> set = new HashSet<>(list);              //хэш сет для того, чтобы убрать не уникальные элементы
         ArrayList<Integer> sortedList = new ArrayList<>(set);         //лист с уникальными элементами для сортировки
         Collections.sort(sortedList);             //сортируем
+        sortedList.add(0);   //добавляем в конец элемент, вдруг не хватает последнего
         int missingNum = 0;
         for(int i = 0; i < sortedList.size(); i++) {
             if(i + 1 != sortedList.get(i)){       //если число не совпало со своим индексом, то пропущенный элемент индекс
