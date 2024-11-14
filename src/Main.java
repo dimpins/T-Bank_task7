@@ -101,12 +101,10 @@ public class Main {
     private static int findMissingNumber(ArrayList<Integer> list) {          //поиск пропущенного числа
         HashSet<Integer> set = new HashSet<>(list);              //хэш сет для того, чтобы убрать не уникальные элементы
         ArrayList<Integer> sortedList = new ArrayList<>(set);         //лист с уникальными элементами для сортировки
-        Collections.sort(sortedList);             //сортируем
-        sortedList.add(0);   //добавляем в конец элемент, вдруг не хватает последнего
         int missingNum = 0;
-        for(int i = 0; i < sortedList.size(); i++) {
-            if(i + 1 != sortedList.get(i)){       //если число не совпало со своим индексом, то пропущенный элемент индекс
-                missingNum = i + 1;
+        for(int i = 1; i <= sortedList.size(); i++) {
+            if(!sortedList.contains(i)){       //если число не совпало со своим индексом, то пропущенный элемент индекс
+                missingNum = i;
                 break;
             }
         }
